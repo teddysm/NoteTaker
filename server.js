@@ -1,9 +1,12 @@
+// import required libraries and dependencies
 const express = require('express');
 const path = require('path');
 const fs = require('fs');
-// Helper method for generating unique ids
+// npm package for generating unique ids
 const uid = require('uniqid');
+
 const PORT = 3001;
+
 const app = express();
 
 app.use(express.json());
@@ -18,7 +21,7 @@ app.get('/notes', (req, res) =>
   res.sendFile(path.join(__dirname, '/public/notes.html'))
 );
 
-// GET request for reviews
+// GET request for notes
 app.get('/api/notes', (req, res) => {
   fs.readFile('./db/db.json', 'utf8', (err, data) => {
     if (err){
@@ -27,14 +30,14 @@ app.get('/api/notes', (req, res) => {
     else{
       const notes = JSON.parse(data);
       res.status(200).json(notes);
-      console.log(`${req.method} request received to get note`)
+      console.log(`${req.method} request received to retrieve notes`)
     }
   })
 });
 
-// POST request to add a review
+// POST request to add a note
 app.post('/api/notes', (req, res) => {
-  console.info(`${req.method} request received to add note`);
+  console.info(`${req.method} request received to add a note`);
 
   // Destructuring assignment for the items in req.body
   const { title, text } = req.body;
@@ -51,9 +54,7 @@ app.post('/api/notes', (req, res) => {
       }
       else{
         const parsedNote = JSON.parse(data);
-
         parsedNote.push(newNote);
-
         fs.writeFile('./db/db.json', JSON.stringify(parsedNote, null, 4), (writeErr) => 
           writeErr ? console.error(writeErr) : console.info('Notes updated!'));
       }
@@ -62,11 +63,10 @@ app.post('/api/notes', (req, res) => {
       status: 'success',
       body: newNote,
     };
-
     console.log(response);
     res.status(201).json(response);
   } else{
-    res.status(500).json('Error in posting review');
+    res.status(500).json('Error in adding a note');
   }})
 
 app.delete('/api/notes/:id', (req, res) => {
