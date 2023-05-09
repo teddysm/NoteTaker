@@ -32,7 +32,7 @@ This is an express app for user to add notes with a text and a title.
 ## Links
 
 - Github page: https://github.com/teddysm/NoteTaker
-- Heroku deployed link: 
+- Heroku deployed link: https://nameless-brushlands-85998.herokuapp.com/
 
 
 <br>
