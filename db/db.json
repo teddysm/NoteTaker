@@ -1,1 +1,17 @@
-[]
+[
+    {
+        "title": "Note 1 ",
+        "text": "Hello World",
+        "id": "1j2d4mnvwlhfoka1r"
+    },
+    {
+        "title": "Note 2",
+        "text": "Hello World",
+        "id": "1j2d4mnvwlhfokfld"
+    },
+    {
+        "title": "Note 3",
+        "text": "Hello World\n",
+        "id": "1j2d4mnvwlhfokmz2"
+    }
+]
